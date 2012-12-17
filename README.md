@@ -15,7 +15,7 @@ Or use specific `c` and `d`:
 
     >>> my_hash = SipHash(c=2, d=4)
 
-Use a 64-bit key to authenticate a string:
+Use a 128-bit key to authenticate a string:
 
     >>> k = 0x0f0e0d0c0b0a09080706050403020100
     >>> m = 'A short message'
