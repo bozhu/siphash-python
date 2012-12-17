@@ -1,4 +1,4 @@
-#!/usr/bin/evn python
+#!/usr/bin/env python
 
 """
     Copyright (C) 2012 Bo Zhu http://about.bozhu.me
@@ -25,6 +25,8 @@
 
 class SipHash:
     def __init__(self, c=2, d=4):
+        assert c >= 0
+        assert d >= 0
         self.__c = c
         self.__d = d
 
@@ -70,8 +72,9 @@ class SipHash:
             | ((self.__v2 >> 32) & 0xffffffff)
 
     def auth(self, key, message):
+        assert 0 <= key and key < 1 << 128
         k0 = key & 0xffffffffffffffff
-        k1 = (key >> 64) & 0xffffffffffffffff
+        k1 = key >> 64
 
         # initialization
         self.__v0 = k0 ^ 0x736f6d6570736575
